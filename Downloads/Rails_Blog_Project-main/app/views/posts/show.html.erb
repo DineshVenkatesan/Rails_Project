@@ -1,0 +1,45 @@
+<div class="container mt-5 " style="min-height: 76vh">
+  <div class="row shadow p-3 mb-5 bg-white rounded mr-md-3">
+    <div class="col-lg-12" style="margin: 10px;text-align: justify">
+      <!-- Post content-->
+      <article>
+        <!-- Post header-->
+        <header class="mb-4">
+          <!-- Post title-->
+          <h1 class="fw-bolder mb-1 title is-2"><%= @post.title %></h1>
+          <% if user_signed_in? and @post.user == current_user %>
+            <span style="position: absolute;right: 130px">
+              <%= link_to 'Edit post', edit_post_path, class: "button is-danger is-light" %>
+            </span>
+            <span style="position: absolute;right: 30px">
+              <%= button_to 'Delete', @post, :method => :delete, class: "button is-danger", data: {confirm: "Are you sure?"} %>
+            </span>
+          <% end %>
+          <!-- Post meta content-->
+          <div class="text-muted fst-italic mb-2">Posted on <%= @post.created_at.to_formatted_s(:short) %><br/> by <%= @post.user.email %></div>
+        </header>
+        <!-- Preview image figure-->
+        <div class="mb-4" style="width: 900px; height: auto">
+          <%= image_tag @post.image, class: "img-fluid rounded", alt: "...", style: " width: 50%" %>
+        </div>
+        <!-- Post content-->
+        <div class="mb-12" style="margin-right: 15px">
+          <p style="text-align: justify-all"><%= @post.description %></p>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="buttons is-justify-content-center">
+    <%= link_to "<< Prev Post", @post.prev, class: "button is-primary"  %>
+    <%= link_to "Next Post >>", @post.next, class: "button is-link" %>
+  </div>
+  <% if user_signed_in? %>
+    <h2 class="title is-4 fw-bold"><%= @post.comments.count %> Comments</h2>
+    <%= render 'comments/form' %>
+    <% if @post.comments.count > 0 %>
+      <%= render 'comments/comment' %>
+    <% end %>
+  <% end %>
+</div>
+
+<%= render 'footer' %>

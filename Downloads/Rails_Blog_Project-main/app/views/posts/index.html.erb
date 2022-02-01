@@ -1,0 +1,42 @@
+<div class="container" style="min-height: 76vh">
+  <div class="row">
+    <!-- Blog entries-->
+    <div class="col-lg-12">
+      <div class="title is-1">Welcome to Blog Post</div>
+      <!-- Featured blog post-->
+      <div class="card mb-6">
+          <%= image_tag "main_post.jpg", {class: "card-img-top",alt: "...",style: "max-height: 500px;"} %>
+        <div class="card-body text-justify">
+          <h2 class="card-title fw-bold">Welcome to Blog Post!</h2>
+          <p class="card-text">A blog is a discussion or informational website published on the World Wide Web consisting of discrete, often informal diary-style text entries (posts). Posts are typically displayed in reverse chronological order, so that the most recent post appears first, at the top of the web page. Until 2009, blogs were usually the work of a single individual,[citation needed] occasionally of a small group, and often covered a single subject or topic. In the 2010s, "multi-author blogs" (MABs) emerged, featuring the writing of multiple authors and sometimes professionally edited. MABs from newspapers, other media outlets, universities, think tanks, advocacy groups, and similar institutions account for an increasing quantity of blog traffic. The rise of Twitter and other "microblogging" systems helps integrate MABs and single-author blogs into the news media. Blog can also be used as a verb, meaning to maintain or add content to a blog.</p>
+        </div>
+      </div>
+      <!-- Nested row for non-featured blog posts-->
+      <div class="row">
+        <!-- Blog post-->
+        <% @posts.each do |post| %>
+          <div class="col-lg-4">
+            <div class="card mb-4" style="height: 35rem">
+              <%= link_to post do %>
+                <%= image_tag post.image, class: "card-img-top", alt: "...", style: "max-height: 20rem;min-height: 15rem" %>
+              <% end %>
+              <div class="card-body text-justify" style="overflow: hidden;max-height: 80%;margin-bottom: 3.6rem">
+                <div class="small text-muted">Posted on <%= post.created_at.to_formatted_s(:short) %></div>
+                <h2 class="card-title h4"><%= post.title %></h2>
+                <p class="card-text"><%= post.description %></p>
+              </div>
+              <div style="position: absolute;bottom: auto;right: 70%;">
+                <%= link_to "Read more...", post, class: "btn btn-primary" %>
+              </div>
+              <div style="position: absolute;bottom: 10px;left: 70%;">
+                <%= link_to "View post >>", post, class: "btn btn-primary" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'footer' %>

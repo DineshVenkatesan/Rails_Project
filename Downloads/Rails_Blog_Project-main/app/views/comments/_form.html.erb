@@ -1,0 +1,13 @@
+<%= form_for([@post, @post.comments.build]) do |form| %>
+  <div class="card bg-light">
+    <div class="card-body">
+      <div class="mb-4">
+        <%= form.label :body, "Add a Comment", class: "subtitle fw-bold" %><br/>
+        <%= form.text_area :body, class: "form-control", rows: "3", placeholder: "Join the discussion and leave a comment!" %>
+        <br/>
+        <%= form.submit 'Comment...', {class: "button is-link is-rounded"} %>
+      </div>
+    </div>
+  </div>
+<% end %>
+<br/>

@@ -1,0 +1,21 @@
+<div class="card bg-light">
+  <div class="card-body">
+    <% @comments.each do |c| %>
+      <div class="d-flex">
+        <div class="d-flex mb-4">
+          <div class="flex-shrink-0">
+            <img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."/></div>
+          <div class="ms-3">
+            <div class="fw-bold"><%= c.user.email %></div>
+            <%= c.body %>
+          </div>
+          <% if current_user == c.user or current_user == @post.user %>
+            <div style="position: relative; left: 10px;bottom: 8px">
+              <%= button_to "Delete", post_comment_path(c.post_id, c.id), method: :delete, class: "button is-ghost text-danger" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div><br/>

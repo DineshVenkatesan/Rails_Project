@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="card-header text-white is-size-2" style="background-color: blue;height: 5rem;">
+    Edit Post
+  </div>
+</div>
+<br/>
+<section class="container">
+  <div class="card">
+    <div class="card-body">
+      <%= form_for @post do |form| %>
+        <div class="container">
+          <%= form.label :title, "Title", class: 'subtitle' %>
+          <%= form.text_field :title, class: "input is-primary" %>
+        </div><br/><br/>
+        <div class="container">
+          <%= form.label :description, "Description", class: 'subtitle' %><br/>
+          <%= form.text_area :description, class: "textarea is-primary" %>
+        </div><br/>
+        <div class="container">
+          <%= form.label :image, "Image Upload : ",class: "subtitle" %>
+          <%= form.file_field :image %>
+        </div><br/>
+        <div class="container buttons">
+          <%= form.submit "Update post", class: "button is-danger" %>
+          <%= link_to 'Back', @post ,class: "button is-primary"%>
+        </div>
+        <br/>
+      <% end %>
+    </div>
+  </div>
+  <br/>
+</section>

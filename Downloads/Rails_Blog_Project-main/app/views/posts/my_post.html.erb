@@ -1,0 +1,37 @@
+<h1 class="title is-2 container">My posts</h1>
+<section class="container ">
+  <% @posts.each do |post| %>
+    <% if post.user == current_user %>
+      <div class="card mb-3" style="height: 15rem; overflow: hidden;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <%#= link_to post do %>
+              <%= image_tag post.image, { class: "img-fluid rounded-start", alt: "...", style: "height: 15rem;width: 100%" } %>
+            <%#= end %>
+          </div>
+          <div class="col-md-8 text-justify" style="max-height: 14rem;">
+            <div class="card-body" style="overflow: hidden;max-height: 80%;margin-bottom: 70px">
+              <h5 class="card-title h2"><%= post.title %></h5>
+              <p class="card-text" ><%= post.description %></p>
+              <p class="card-text" style="position: absolute;bottom: 10px">
+                <small class="text-muted">Posted on <%= post.created_at.to_formatted_s(:short) %></small></p>
+            </div>
+          </div>
+          <div style="position: absolute;bottom: 10px;left: 74rem">
+            <%= link_to "Read more...", post, class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+      <% @post_count += 1 %>
+    <% end %>
+
+  <% end %>
+</section>
+<br/><br/>
+
+<% if @post_count == 0 %>
+  <div class="container">
+    <p>There is no post to view</p><br/>
+    <p><%= link_to 'Create new post', new_post_path %> to view</p>
+  </div>
+<% end %>

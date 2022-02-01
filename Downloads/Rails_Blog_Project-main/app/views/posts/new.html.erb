@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="card-header text-white is-size-2" style="background-color: blue;height: 5rem;">
+    Create new post
+  </div>
+</div>
+<br/>
+<section class="container">
+  <div class="card">
+    <div class="card-body">
+      <%= form_for @post do |form| %>
+        <div class="container">
+          <%= form.label :title, "Title", class: 'subtitle' %>
+          <%= form.text_field :title, class: "input is-info" %>
+        </div><br/>
+        <div class="container">
+          <%= form.label :description, "Description", class: 'subtitle' %><br/>
+          <%= form.text_area :description,class: "textarea is-info" %>
+        </div><br/>
+        <div class="container">
+          <%= form.label :image, "Upload image : ",class: "subtitle" %>
+          <%= form.file_field :image %>
+        </div><br/>
+        <div class="container">
+          <%= form.number_field :user_id, id: :posts_user_id,value: current_user.id, type: :hidden %>
+        </div>
+        <div class="container">
+          <%= form.submit "Create new post", class: "button is-link" %>
+          <%= link_to 'Back', :back ,class: "button is-primary"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
